@@ -1,0 +1,9 @@
+<div class="container exchange-container" style="margin-top: 5%;"
+*ngIf="popularSymbolRates && popularSymbolRates.length > 0">
+    <div class="row col-md-12">
+        <h5>Popular Currency Rates</h5>
+        <div class="box-container" *ngFor="let symbolRate of popularSymbolRates">
+            <strong> {{symbolRate.code}} {{symbolRate.amount}} </strong>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="container exchange-container card sticky-top" style="top: 72.5px;">
+    <div class="row col-md-12" style="width: 100%;">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="number" [(ngModel)]="amount" class="form-control" placeholder="0.00">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="amount">From</label>
+                <select class="form-control" [(ngModel)]="fromCurrency" [disabled]="enableFromCurrency" (change)="changeFromCurrency()">
+                    <option *ngFor="let symbol of symbols" [value]="symbol.code">{{symbol.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <a (click)="swap()"><i class="fa fa-exchange arrow" aria-hidden="true"></i></a>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="amount">To</label>
+                <select class="form-control" [(ngModel)]="toCurrency" (change)="changeToCurrency()">
+                    <option *ngFor="let symbol of symbols" [value]="symbol.code">{{symbol.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-9" style="margin-top:10px">
+            <button class="btn btn-primary" style="width: 100%;" [disabled]="checkExchange()"
+                (click)="exchange($event)">Convert</button>
+        </div>
+        <div class="col-md-3" style="margin-top: 19px;">
+            <div class="form-group">
+                <label for="amount" style="visibility: hidden;">Exchange Amount</label>
+                <span *ngIf="resultAmount && resultAmount > 0"
+                    style="font-weight: 600;display: block;border: 1px solid rgb(103, 103, 234);padding: 5px;">1.00
+                    {{fromCurrency}} = {{selectedRatesInfo.rate | number : '1.2-2'}} {{toCurrency}}</span>
+            </div>
+        </div>
+        <div class="col-md-4" style="margin-top: 20px;">
+            <div class="form-group">
+                <label for="amount">Exchange Amount</label><span *ngIf="resultAmount && resultAmount > 0">(In {{toCurrency}})</span> 
+                <input type="number" [value]="resultAmount | number : '1.2-2'" style="font-weight: bold;font-size: 16px;opacity: 0.5;"
+                    class="form-control" [readonly]="true" placeholder="0.00">
+            </div>
+        </div>
+
+        <div class="col-md-4" style="margin-top: 20px;" *ngIf="enableMoreDetails">
+            <div class="form-group">
+                <button class="btn btn-primary" style="margin-top: 25px; width: 70%;" (click)="getMoreDetails()">More
+                    Details</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<h4 class="container">{{fromCurrencyName}}</h4>
+<div style="display: flex; align-items: flex-end; justify-content: flex-end;">
+    <div class="col-md-2">
+        <a class="btn btn-primary" href="/">Back to Home</a>
+    </div>
+</div>
+
+<app-exchanger [enableMoreDetails]="false" [enableFromCurrency]="true"></app-exchanger>
+
+<div class="container col-md-12" style="margin-top:5%;">
+<highcharts-chart *ngIf="isChartEnabled"
+  [Highcharts]="highCharts"
+  [options]="chartOptions"
+  style="width: 100%; height: 400px; display: block;"
+></highcharts-chart>
+</div>
